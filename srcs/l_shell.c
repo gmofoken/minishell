@@ -6,13 +6,13 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 16:15:56 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/12 23:38:37 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/08/14 13:24:25 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-char		echo(char **args)
+/*char		echo(char **args)
 {
 	int		i;
 
@@ -29,12 +29,12 @@ char		echo(char **args)
 		}
 	}
 	return (0);
-}
+}*/
 
 static int	o_args(char **args, int b, char **envp)
 {
 	if (ft_strcmp(args[0], "echo") == 0)
-		echo(args);
+		ft_echo(args);
 	else if (ft_strcmp(args[0], "env") == 0 || ft_strcmp(args[0], "setenv")
 			== 0 || ft_strcmp(args[0], "unsetenv") == 0)
 		env_mod(args, envp);
