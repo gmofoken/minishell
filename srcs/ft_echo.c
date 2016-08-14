@@ -30,26 +30,35 @@ static void	ft_cap_e(char **args)
 	}
 }
 
+static void ft_e()
+{
+	ft_putstr("KJHS MBNS");
+}
+
 void		ft_echo(char **args)
 {
 	int		i;
 	int		n;
+	int		b;
 
 	n = 0;
-	i = 0;
-	while (args[1][i++])
-	{
-		if (args[1][i] == '-' )
-			i++;
-		if (args[1][i] == 'n')
-			n = 1;
-		else if (args[1][i] == 'E')
+	i = 1;
+	b = 1;
+	if (args[1][0] == '-')
+		while (args[1][i++])
 		{
-			ft_cap_e(args);
+			if (args[1][i] == 'n')
+				n = 1;
+			if (args[1][i] == 'e')
+				b = 0;
 		}
-		//else
-			//ft_cap_e(args);
-	}
+	else
+		b = 2;
+	ft_putnbr(b);
+	if (b == 1)
+		ft_cap_e(args);
+	else if (b == 0)
+		ft_e();
 	if (n == 1)
 		ft_putchar('$');
 	ft_putchar('\n');
