@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 23:20:05 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/14 16:00:48 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/08/15 16:33:12 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,13 @@ static void	ft_cap_e(char **args)
 
 static void ft_e(char **args)
 {
+	char	*tmp;
 
-	ft_putendl(ft_strstr(args[2], "\\c"));
+	tmp = ft_strstr(args[2], "\\c");
+	if (tmp != NULL)
+		ft_putendl(tmp);
+	else
+		ft_putendl(args[2]);
 }
 
 void		ft_echo(char **args)
