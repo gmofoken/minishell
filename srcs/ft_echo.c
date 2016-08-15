@@ -11,6 +11,15 @@
 /* ************************************************************************** */
 
 #include "mini_shell.h"
+static int	ft_len(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+		i++;
+	return (i);
+}
 
 static void	ft_cap_e(char **args)
 {
@@ -30,9 +39,10 @@ static void	ft_cap_e(char **args)
 	}
 }
 
-static void ft_e()
+static void ft_e(char **args)
 {
-	ft_putstr("KJHS MBNS");
+
+	ft_putendl(ft_strstr(args[2], "\\c"));
 }
 
 void		ft_echo(char **args)
@@ -42,23 +52,22 @@ void		ft_echo(char **args)
 	int		b;
 
 	n = 0;
-	i = 1;
+	i = 0;
 	b = 1;
-	if (args[1][0] == '-')
+	if (ft_len(args) != 1 && args[1][0] == '-')
 		while (args[1][i++])
 		{
 			if (args[1][i] == 'n')
 				n = 1;
-			if (args[1][i] == 'e')
+			else if (args[1][i] == 'e')
 				b = 0;
 		}
 	else
-		b = 2;
-	ft_putnbr(b);
+		b = 0;
 	if (b == 1)
 		ft_cap_e(args);
 	else if (b == 0)
-		ft_e();
+		ft_e(args);
 	if (n == 1)
 		ft_putchar('$');
 	ft_putchar('\n');
