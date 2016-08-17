@@ -39,15 +39,34 @@ static void	ft_cap_e(char **args)
 	}
 }
 
-static void ft_e(char **args)
+static int ft_stop(char *s)
 {
 	char	*tmp;
+	int	l;
 
-	tmp = ft_strstr(args[2], "\\c");
+	l = 0;
+	tmp = ft_strstr(s, "\\c");
 	if (tmp != NULL)
-		ft_putendl(tmp);
-	else
-		ft_putendl(args[2]);
+		l = (ft_strlen(s) - ft_strlen(tmp)) - 1; 
+	return (l);
+}
+
+static void ft_e(char **args)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 1;
+	if (args[j][i] == '-')
+		j++;
+	while (i < ft_stop(args[j]))
+	{
+		ft_putchar(args[j][i]);
+		if (ft_strlen(args[j]) != (unsigned int)ft_stop(args[j]))
+			break;
+		i++;
+	}
 }
 
 void		ft_echo(char **args)
