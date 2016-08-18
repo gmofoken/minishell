@@ -29,16 +29,21 @@ char	*env_attr(char **envp, char *attr)
 	return (ft_strstr(envp[i], "/"));
 }
 
-int		ft_cd(char **args, char **env)
+char	*unique_dir(char *arg, char **env)
+{
+	return (ft_strjoin(env_attr(env, "HOME"), ft_strstr(arg, "/")));
+}
+
+int	ft_cd(char **args, char **env)
 {
 	if (ft_strcmp(args[0], "cd") == 0)
 	{
-		if (!args[1] || ft_strcmp(args[1], "~") == 0)
+		if (ft_strncmp(args[1], "~/", 2) == 0)
+			chdir(unique_dir(args[1], env));
+		else if (!args[1] || ft_strcmp(args[1], "~") == 0)
 			chdir(env_attr(env, "HOME"));
 		else if (ft_strcmp(args[1], "-") == 0)
 			chdir(env_attr(env, "OLDPWD"));
-		else if (ft_strncmp(args[1], "~/", 2) == 0)
-			chdir(unique_dir(env));
 		else
 			chdir(args[1]);
 	}

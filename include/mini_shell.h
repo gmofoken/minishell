@@ -27,5 +27,6 @@ int			env_mod(char **args, char **envp);
 char		**ft_set_env(char **args, char **envp);
 int			ft_cd(char **args, char **envp);
 void		ft_echo(char **args);
+int		ft_ex_cons(char *arg);
 
 #endif

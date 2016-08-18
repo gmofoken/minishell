@@ -38,7 +38,7 @@ static void	ft_cap_e(char **args)
 		i++;
 	}
 }
-
+/*
 static int ft_stop(char *s)
 {
 	char	*tmp;
@@ -55,24 +55,21 @@ static int ft_stop(char *s)
 	else
 		return (ft_strlen(s));
 	return (l - 1);
-}
+}*/
 
 static void ft_e(char **args)
 {
 	int	i;
-	int	j;
+	int	b;
 
-	i = 0;
-	j = 1;
-	if (args[j][i] == '-')
-		j++;
-	while (args[j++] != '\0')
+	i = 1;
+	b = 1;
+	if (args[i][0] == '-')
+		i++;
+	while (args[i] && b != 0)
 	{
-		while (i < ft_stop(args[j]) && args[j][i] != '\0')
-		{
-			ft_putchar(args[j][i]);
-			i++;
-		}
+		b = ft_ex_cons(args[i]);
+		i++;
 	}
 }
 
@@ -85,8 +82,7 @@ void		ft_echo(char **args)
 	n = 0;
 	i = 0;
 	b = 3;
-	ft_putnbr(ft_len(args));
-	if (ft_len(args) > 0 && args[1][0] == '-')
+	if (ft_len(args) != 0 && args[1][0] == '-')
 		while (args[1][i++])
 		{
 			if (args[1][i] == 'n')
