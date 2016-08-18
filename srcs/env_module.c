@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/10 10:24:19 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/07/10 15:43:57 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/08/18 13:10:35 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ int			env_mod(char **args, char **envp)
 	if (ft_strcmp(args[0], "env") == 0)
 		ft_env(envp);
 	else if (ft_strcmp(args[0], "setenv") == 0)
-		ft_set_env(args, envp);
+		ft_setenv(args[1], envp);
 	return (2);
 }

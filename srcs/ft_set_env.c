@@ -6,75 +6,87 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/10 11:55:41 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/07/10 15:17:52 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/08/18 16:27:35 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-char			*sep(char *s)
+void	ft_execute_env(char **env)
 {
-	char	*prt;
-	int		i;
+	int i;
 
 	i = 0;
-	prt = (char *)malloc(sizeof(ft_strlen(s)));
-	while (s[i] != '=')
+	while (env[i] != NULL)
 	{
-		prt[i] = s[i];
+		ft_putstr(env[i]);
+		ft_putchar('\n');
 		i++;
 	}
-	prt[i] = '\0';
-	return (prt);
 }
 
-static char		**change(char *arg, char **envp)
+void	ft_execute_pwd(char **env)
 {
-	int		i;
-	int		b;
+	int	i;
+	int	j;
 
 	i = 0;
-	b = 1;
-	while (envp[i] && b != 0)
+	j = 4;
+	while (env[i] != NULL)
 	{
-		if (ft_strcmp(sep(arg), sep(envp[i])) == 0)
-			b = 0;
+		if (ft_strncmp(env[i], "PWD=", 4) == 0)
+		{
+			while (env[i][j])
+			{
+				ft_putchar(env[i][j]);
+				j++;
+			}
+			ft_putchar('\n');
+			return;
+		}
+		i++;
+	}	
+}
+
+char	*ft_realloc(char *str, char *str2)
+{
+	char	*nstr;
+
+	str = NULL;
+	if (str2 == NULL)
+		return (str);
+	nstr = (char *)malloc(sizeof(char) * ft_strlen(str2));
+	ft_strcpy(nstr, str2);
+	return (nstr);
+}
+
+int	ft_findpoint(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	if (str[i] == c)
+		return (i);
+	return (-1);
+}
+
+void	ft_setenv(char *arg, char **env)
+{
+	int		i;
+
+	i = 0;
+	while (env[i])
+	{
+		if (ft_strncmp(arg, env[i], ft_findpoint(arg, '=')) == 0)
+		{
+			env[i] = ft_realloc(env[i], arg);
+			return;
+		}
 		i++;
 	}
-	i--;
-	envp[i] = arg;
-	return (envp);
-}
-
-int				exists(char *arg, char **envp)
-{
-	int		i;
-
-	i = 0;
-	while (envp[i])
-	{
-		if (ft_strcmp(sep(arg), sep(envp[i])) == 0)
-			return (0);
-		ft_putchar('X');
+	while (env[i] != NULL)
 		i++;
-	}
-	return (1);
-}
-
-char			**ft_set_env(char **args, char **envp)
-{
-	int		i;
-
-	i = 0;
-	if (exists(args[1], envp) == 0)
-		envp = change(args[1], envp);
-	else
-	{
-		ft_putchar('X');
-		while (envp[i])
-			i++;
-		i--;
-		ft_putstr(envp[i]);
-	}
-	return (envp);
+	env[i] = ft_realloc(env[i], arg);
 }

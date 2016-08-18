@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:39:22 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/14 13:27:28 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/08/18 13:01:12 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ char		*ft_get_line(void);
 void		exe(char **args, char **envp);
 char		*ft_path_finder(char **p, char **n);
 int			env_mod(char **args, char **envp);
-char		**ft_set_env(char **args, char **envp);
+void		ft_setenv(char *arg, char **env);
 int			ft_cd(char **args, char **envp);
 void		ft_echo(char **args);
-int		ft_ex_cons(char *arg);
+int			ft_ex_cons(char *arg);
 
 #endif
