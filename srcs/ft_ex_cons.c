@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ex_cons.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/08/19 08:36:04 by gmofoken          #+#    #+#             */
+/*   Updated: 2016/08/19 11:09:36 by gmofoken         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "mini_shell.h"
 
-static void ft_f_v(int i)
+static void	ft_f_v(int i)
 {
 	int		j;
 
@@ -39,21 +51,21 @@ static int	ft_check_flag(char c, int i)
 	return (0);
 }
 
-int	ft_stop(char *s)
+int			ft_stop(char *s)
 {
 	char	*tmp;
-	int	i;
+	int		i;
 
 	i = 0;
-	tmp = ft_strstr(s, "\\\\c");
+	tmp = ft_strstr(s, "\\c");
 	if (tmp != NULL)
 		i = (ft_strlen(s) - ft_strlen(tmp));
-	else	
+	else
 		i = ft_strlen(s);
 	return (i);
 }
 
-int		ft_ex_cons(char *arg)
+int			ft_ex_cons(char *arg)
 {
 	int	b;
 	int	i;
@@ -62,7 +74,7 @@ int		ft_ex_cons(char *arg)
 
 	b = 1;
 	i = 0;
-	l = ft_stop(arg);
+	l = ft_stop(arg) - 1;
 	if (l != (int)ft_strlen(arg))
 		b = 0;
 	while (arg[i] && i < l)
@@ -74,6 +86,8 @@ int		ft_ex_cons(char *arg)
 				ft_putchar(arg[i]);
 			i += ft_check_flag(arg[j + 2], i);
 		}
+		if (arg[i] == '\"')
+			i++;
 		ft_putchar(arg[i]);
 		i++;
 	}

@@ -6,30 +6,11 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 16:15:56 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/14 13:24:25 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/08/19 09:13:02 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
-
-/*char		echo(char **args)
-{
-	int		i;
-
-	i = 0;
-	if (ft_strcmp(args[0], "echo") == 0)
-		i = 0;
-	else if (ft_strcmp(args[0], "echo") == 0 && ft_strcmp(args[1], " ") == 0)
-	{
-		i = 2;
-		while (args[i])
-		{
-			ft_putstr(args[i]);
-			i++;
-		}
-	}
-	return (0);
-}*/
 
 static int	o_args(char **args, int b, char **envp)
 {

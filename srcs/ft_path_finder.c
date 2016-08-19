@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 15:38:28 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/12 18:32:37 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/08/19 09:18:48 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ char			*ft_path_finder(char **p, char **n)
 			return (d);
 		i++;
 	}
-	ft_putstr("zsh: command not found: ");
-	ft_putendl(*n);
+	ft_putendl(ft_strjoin("zsh: command not found: ", *n));
 	return (NULL);
 }

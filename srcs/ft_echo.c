@@ -6,11 +6,12 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 23:20:05 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/18 14:42:17 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/08/19 09:24:08 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
+
 static int	ft_len(char **args)
 {
 	int	i;
@@ -34,14 +35,14 @@ static void	ft_cap_e(char **args)
 		i++;
 	while (args[i])
 	{
-		ft_putstr(args[i]);
+		ft_putecho(args[i]);
 		if (i != j - 1)
 			ft_putchar(' ');
 		i++;
 	}
 }
 
-static void ft_e(char **args)
+static void	ft_e(char **args)
 {
 	int	i;
 	int	b;
@@ -57,6 +58,14 @@ static void ft_e(char **args)
 			ft_putchar(' ');
 		i++;
 	}
+}
+
+void		ft_echo_br(int b, char **args)
+{
+	if (b == 1)
+		ft_cap_e(args);
+	if (b == 0)
+		ft_e(args);
 }
 
 void		ft_echo(char **args)
@@ -80,10 +89,7 @@ void		ft_echo(char **args)
 					b = 0;
 			}
 		}
-		if (b == 1)
-			ft_cap_e(args);
-		if (b == 0)
-			ft_e(args);
+		ft_echo_br(b, args);
 	}
 	if (n == 1)
 		ft_putchar('$');

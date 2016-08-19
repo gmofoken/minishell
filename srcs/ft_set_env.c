@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/10 11:55:41 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/18 16:27:35 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/08/19 09:15:27 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	ft_execute_pwd(char **env)
 				j++;
 			}
 			ft_putchar('\n');
-			return;
+			return ;
 		}
 		i++;
-	}	
+	}
 }
 
 char	*ft_realloc(char *str, char *str2)
@@ -60,7 +60,7 @@ char	*ft_realloc(char *str, char *str2)
 	return (nstr);
 }
 
-int	ft_findpoint(char *str, char c)
+int		ft_findpoint(char *str, char c)
 {
 	int	i;
 
@@ -82,7 +82,7 @@ void	ft_setenv(char *arg, char **env)
 		if (ft_strncmp(arg, env[i], ft_findpoint(arg, '=')) == 0)
 		{
 			env[i] = ft_realloc(env[i], arg);
-			return;
+			return ;
 		}
 		i++;
 	}

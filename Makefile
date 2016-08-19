@@ -6,7 +6,7 @@
 #    By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/09 18:03:57 by gmofoken          #+#    #+#              #
-#    Updated: 2016/08/14 13:28:08 by gmofoken         ###   ########.fr        #
+#    Updated: 2016/08/19 08:50:51 by gmofoken         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 SOURCES = srcs/exe.c srcs/ft_path_finder.c srcs/get_line.c srcs/l_shell.c \
           srcs/main.c srcs/env_module.c srcs/ft_set_env.c srcs/ft_cd.c \
-		  srcs/ft_echo.c srcs/ft_ex_cons.c
+		  srcs/ft_echo.c srcs/ft_ex_cons.c srcs/ft_putecho.c
 
 HEADER = -I include
 
