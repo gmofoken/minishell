@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/10 15:34:05 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/19 16:51:06 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/08/20 11:22:12 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,47 +41,56 @@ static void	travel(char **env, char *dir, char **args)
 	tmp = NULL;	
 	if (ft_strcmp(dir, "OLD") == 0)
 	{
+		ft_putendl(env_attr(env, "OLDPWD"));
 		tmp = ft_strjoin("OLDPWD=", env_attr(env, "PWD"));
 		ft_setenv(ft_strjoin("PWD=", env_attr(env, "OLDPWD")), env);
+		ft_setenv(tmp, env);
 	}
-	if (ft_strcmp(dir, "HOME") == 0)
+	else if (ft_strcmp(dir, "HOME") == 0)
 	{
 		tmp = ft_strjoin("OLDPWD=", env_attr(env, "PWD"));
 		ft_setenv(ft_strjoin("PWD=", env_attr(env, "HOME")), env);
+		ft_setenv(tmp, env);
 	}
-	if (ft_strcmp(dir, "HOME") == 0)
+	else if(ft_strcmp(dir, unique_dir(args[1], env)) == 0)
 	{
 		tmp = ft_strjoin("OLDPWD=", env_attr(env, "PWD"));
 		ft_setenv(ft_strjoin("PWD=", unique_dir(args[1], env)), env);
+		ft_setenv(tmp, env);
+	}
+	else if (ft_strcmp(dir, "BXT") == 0)
+	{
+		tmp = ft_strjoin("OLDPWD=", env_attr(env, "PWD"));
+		ft_setenv(ft_strjoin("PWD=", env_attr(env, "OLDPWD")), env);
+		ft_setenv(tmp, env);
 	}
 
-	ft_setenv(tmp, env);
 }
 
 int			ft_cd(char **args, char **env)
 {
-	if (args[1] == NULL || args[1] == '\0' || ft_strcmp(args[1], "~") == 0)
-	{
-		chdir(env_attr(env, "HOME"));
-		travel(env, "HOME", args);
-	}
+	if (ft_strcmp(args[1], "?") == 0)
+		ft_putendl("zsh: no matches found: ?");
 	else if (ft_strncmp(args[1], "~/", 2) == 0)
 	{
 		chdir(unique_dir(args[1], env));
 		travel(env, unique_dir(args[1], env), args);
+	}
+	else if (ft_len(args) < 1 || ft_strcmp(args[1], "~") == 0)
+	{
+		chdir(env_attr(env, "HOME"));
+		travel(env, "HOME", args);
 	}
 	else if (ft_strcmp(args[1], "-") == 0)
 	{
 		chdir(env_attr(env, "OLDPWD"));
 		travel(env, "OLD", args);
 	}
-	else if (args[1] != NULL || args[1] != '\0')
+	else if (ft_len(args) == 2)
 	{
 		chdir(args[1]);
 		travel(env, "BXT", args);
 	}
-	else if (ft_strcmp(args[1], "?") == 0)
-		ft_putendl("zsh: no matches found: ?");
 	else
 		ft_putendl(ft_strjoin("cd: no such file or directory: ", args[1]));		
 	return (1);

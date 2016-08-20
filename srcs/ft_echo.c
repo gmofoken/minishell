@@ -6,13 +6,13 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 23:20:05 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/19 09:24:08 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/08/20 11:11:15 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-static int	ft_len(char **args)
+int			ft_len(char **args)
 {
 	int	i;
 

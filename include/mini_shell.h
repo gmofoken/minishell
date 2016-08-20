@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:39:22 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/19 08:49:29 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/08/20 11:11:05 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int			ft_cd(char **args, char **envp);
 void		ft_echo(char **args);
 int			ft_ex_cons(char *arg);
 void		ft_putecho(char *s);
+int			ft_len(char **args);
 
 #endif
