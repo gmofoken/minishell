@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/10 15:34:05 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/20 11:22:12 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/08/21 10:59:45 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	travel(char **env, char *dir, char **args)
 {
 	char	*tmp;
 
-	tmp = NULL;	
+	tmp = NULL;
 	if (ft_strcmp(dir, "OLD") == 0)
 	{
 		ft_putendl(env_attr(env, "OLDPWD"));
@@ -52,31 +52,37 @@ static void	travel(char **env, char *dir, char **args)
 		ft_setenv(ft_strjoin("PWD=", env_attr(env, "HOME")), env);
 		ft_setenv(tmp, env);
 	}
-	else if(ft_strcmp(dir, unique_dir(args[1], env)) == 0)
+	else if (ft_strcmp(dir, unique_dir(args[1], env)) == 0)
 	{
 		tmp = ft_strjoin("OLDPWD=", env_attr(env, "PWD"));
 		ft_setenv(ft_strjoin("PWD=", unique_dir(args[1], env)), env);
 		ft_setenv(tmp, env);
 	}
-	else if (ft_strcmp(dir, "BXT") == 0)
-	{
-		tmp = ft_strjoin("OLDPWD=", env_attr(env, "PWD"));
-		ft_setenv(ft_strjoin("PWD=", env_attr(env, "OLDPWD")), env);
-		ft_setenv(tmp, env);
-	}
+}
 
+void		ft_cd_fnl(char **args)
+{
+	int		i;
+
+	i = chdir(args[1]);
+	if (i != 0)
+		ft_putendl(ft_strjoin("cd: no such file or directory: ", args[1]));
 }
 
 int			ft_cd(char **args, char **env)
 {
-	if (ft_strcmp(args[1], "?") == 0)
+	int		i;
+
+	i = 0;
+	if (ft_len(args) > 1 && ft_strcmp(args[1], "?") == 0)
 		ft_putendl("zsh: no matches found: ?");
-	else if (ft_strncmp(args[1], "~/", 2) == 0)
+	else if (ft_len(args) > 1 && ft_strncmp(args[1], "~/", 2) == 0)
 	{
-		chdir(unique_dir(args[1], env));
-		travel(env, unique_dir(args[1], env), args);
+		i = chdir(unique_dir(args[1], env));
+		if (i == 0)
+			travel(env, unique_dir(args[1], env), args);
 	}
-	else if (ft_len(args) < 1 || ft_strcmp(args[1], "~") == 0)
+	else if (ft_len(args) == 1 || ft_strcmp(args[1], "~") == 0)
 	{
 		chdir(env_attr(env, "HOME"));
 		travel(env, "HOME", args);
@@ -86,12 +92,7 @@ int			ft_cd(char **args, char **env)
 		chdir(env_attr(env, "OLDPWD"));
 		travel(env, "OLD", args);
 	}
-	else if (ft_len(args) == 2)
-	{
-		chdir(args[1]);
-		travel(env, "BXT", args);
-	}
 	else
-		ft_putendl(ft_strjoin("cd: no such file or directory: ", args[1]));		
+		ft_cd_fnl(args);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/19 08:36:04 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/19 11:09:36 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/08/21 10:16:03 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int			ft_ex_cons(char *arg)
 	b = 1;
 	i = 0;
 	l = ft_stop(arg) - 1;
-	if (l != (int)ft_strlen(arg))
+	if (l != (int)ft_strlen(arg) - 1)
 		b = 0;
 	while (arg[i] && i < l)
 	{
@@ -88,8 +88,11 @@ int			ft_ex_cons(char *arg)
 		}
 		if (arg[i] == '\"')
 			i++;
-		ft_putchar(arg[i]);
+		else
+			ft_putchar(arg[i]);
 		i++;
 	}
+	if (arg[i] != '\\')
+		ft_putchar(arg[i]);
 	return (b);
 }
