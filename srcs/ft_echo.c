@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 23:20:05 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/20 11:11:15 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/08/22 09:01:37 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	ft_e(char **args)
 		i++;
 	while (args[i] && b != 0)
 	{
-		b = ft_ex_cons(args[i]);
+		b = ft_do_e(args[i]);
 		if (i < ft_len(args) - 1)
 			ft_putchar(' ');
 		i++;

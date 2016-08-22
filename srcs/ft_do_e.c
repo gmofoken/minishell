@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ex_cons.c                                       :+:      :+:    :+:   */
+/*   ft_do_e.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/19 08:36:04 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/21 10:16:03 by gmofoken         ###   ########.fr       */
+/*   Created: 2016/08/22 08:21:17 by gmofoken          #+#    #+#             */
+/*   Updated: 2016/08/22 11:15:18 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-static void	ft_f_v(int i)
+static void		ft_f_v(int i)
 {
 	int		j;
 
@@ -22,39 +22,10 @@ static void	ft_f_v(int i)
 		ft_putchar(' ');
 }
 
-static int	ft_check_flag(char c, int i)
+static int		ft_stop(char *s)
 {
-	if (c == 'b')
-		return (4);
-	if (c == 'e')
-		return (5);
-	if (c == 'n')
-	{
-		ft_putchar('\n');
-		return (4);
-	}
-	if (c == 't')
-	{
-		ft_putchar('\t');
-		return (4);
-	}
-	if (c == 'f' || c == 'v')
-	{
-		ft_f_v(i);
-		return (4);
-	}
-	else if (c != 'c')
-	{
-		ft_putchar('\\');
-		return (4);
-	}
-	return (0);
-}
-
-int			ft_stop(char *s)
-{
-	char	*tmp;
-	int		i;
+	char    *tmp;
+	int     i;
 
 	i = 0;
 	tmp = ft_strstr(s, "\\c");
@@ -65,34 +36,49 @@ int			ft_stop(char *s)
 	return (i);
 }
 
-int			ft_ex_cons(char *arg)
+static int	ft_check_flag(char c, int i)
 {
-	int	b;
-	int	i;
-	int	j;
-	int	l;
+	if (c == 'n')
+		ft_putchar('\n');
+	else if (c == 't')
+		ft_putchar('\t');
+	else if (c == 'f' || c == 'v')
+		ft_f_v(i);
+	else if (c == 'e')
+		return (4);
+	else
+	{
+		ft_putchar('\\');
+		return (2);
+	}
+	return (3);
+}
 
-	b = 1;
+int			ft_do_e(char *arg)
+{
+	int		l;
+	int		b;
+	int		i;
+
 	i = 0;
+	b = 1;
 	l = ft_stop(arg) - 1;
 	if (l != (int)ft_strlen(arg) - 1)
 		b = 0;
-	while (arg[i] && i < l)
+	while (arg[i] != '\0' && i < l)
 	{
-		j = i + 1;
-		if (arg[j] != '\0' && arg[j] == '\\')
+		if (arg[i + 1] == '\\' && arg[i + 3] == 'b' && (i + 1) != l)
+			i += 3;
+		else if (arg[i + 1] == '\\' && (i + 1) != l)
 		{
-			if (arg[j + 2] == 'e')
-				ft_putchar(arg[i]);
-			i += ft_check_flag(arg[j + 2], i);
+			ft_putchar(arg[i]);
+			i += ft_check_flag(arg[i + 3], i);
 		}
-		if (arg[i] == '\"')
-			i++;
-		else
+		else if (arg[i] != '\\' && arg[i] != '\"')
 			ft_putchar(arg[i]);
 		i++;
 	}
-	if (arg[i] != '\\')
+	if (arg[i] != '\\' && arg[i] != '\"')
 		ft_putchar(arg[i]);
 	return (b);
 }
