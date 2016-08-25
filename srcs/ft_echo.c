@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 23:20:05 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/22 09:01:37 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/08/25 13:17:52 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,23 +73,25 @@ void		ft_echo(char **args)
 	int		i;
 	int		n;
 	int		b;
+	char	**e_args;
 
 	n = 0;
 	i = 0;
 	b = 1;
-	if (args[1] != NULL || args[1] != '\0')
+	e_args = ft_echo_quo(args);
+	if (e_args[1] != NULL || e_args[1] != '\0')
 	{
-		if (ft_len(args) > 1 || ft_strncmp(args[1], "-e", 2) == 0)
+		if (ft_len(e_args) > 1 || ft_strncmp(e_args[1], "-e", 2) == 0)
 		{
-			while (args[1][i++])
+			while (e_args[1][i++])
 			{
-				if (args[1][i] == 'n')
+				if (e_args[1][i] == 'n')
 					n = 1;
-				else if (args[1][i] == 'e' || args[1][0] != '-')
+				else if (e_args[1][i] == 'e' || e_args[1][0] != '-')
 					b = 0;
 			}
 		}
-		ft_echo_br(b, args);
+		ft_echo_br(b, e_args);
 	}
 	if (n == 1)
 		ft_putchar('$');
