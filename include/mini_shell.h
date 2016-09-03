@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:39:22 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/09/01 13:44:50 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/09/03 09:02:36 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void		ft_resetenv(char **env, char *str);
 char		*ft_realloc(char *str, char *str2);
 void		ft_execute_env(char **env);
 void		ft_2d_free(char **arg);
-void		ft_echo_quo(char ***args);
+char		**ft_echo_quo(char **args, int *e);
 
 #endif

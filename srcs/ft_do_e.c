@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 08:21:17 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/09/01 09:28:55 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/09/03 09:29:03 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int				ft_len(char **args)
 		i++;
 	return (i);
 }
+
 static void		ft_f_v(int i)
 {
 	int		j;
@@ -33,8 +34,8 @@ static void		ft_f_v(int i)
 
 static int		ft_stop(char *s)
 {
-	char    *tmp;
-	int     i;
+	char	*tmp;
+	int		i;
 
 	i = 0;
 	tmp = ft_strstr(s, "\\c");

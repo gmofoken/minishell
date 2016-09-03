@@ -6,13 +6,13 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 10:28:30 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/09/01 14:59:05 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/09/03 09:23:44 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-static int		ft_even_odd(char ***args)
+static int		ft_even_odd(char **args)
 {
 	int		i;
 	int		j;
@@ -20,19 +20,13 @@ static int		ft_even_odd(char ***args)
 
 	i = 0;
 	even = 0;
-	ft_putendl("e_o#1");
 	while (args[i])
 	{
-	ft_putendl("e_o#2");
 		j = 0;
 		while (args[i][j] != '\0')
-		{
-	ft_putendl("e_o#3");
-			if (args[0][i][j++] == '"')
+			if (args[i][j++] == '"')
 				even++;
-		}
 		i++;
-	ft_putendl("e_o#4");
 	}
 	if ((even % 2) == 0)
 		return (0);
@@ -96,29 +90,24 @@ static char		**ft_new_args(char **args)
 		new_args[i++] = line;
 		j = 0;
 		while (line[j++] != '\0')
-		{
 			if (ft_even_odd_s(line) == 1)
 				b = 0;
-		}
 	}
 	new_args[i] = NULL;
 	return (new_args);
 }
 
-void 			ft_echo_quo(char ***args)
+char			**ft_echo_quo(char **args, int *e)
 {
-	//char	**new_args;	
+	char	**new_args;
 	int		i;
 
 	i = 0;
-	//**new_args = **args[0];
-	ft_putendl("quo#1");
 	if (ft_even_odd(args) == 1)
 	{
-	ft_putendl("quo#2");
-		*args = ft_new_args(*args);
-		//return (&new_args);
+		*e = 1;
+		new_args = ft_new_args(args);
+		return (new_args);
 	}
-	ft_putendl("quo#3");
-	//return (new_args);
+	return (args);
 }

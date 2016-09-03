@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/12 23:20:05 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/09/01 14:52:09 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/09/03 09:08:10 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	ft_cap_e(char **args)
 	}
 }
 
-static void	ft_e(char **args)
+static void	ft_e(char **args, int e)
 {
 	int	i;
 	int	b;
@@ -44,21 +44,21 @@ static void	ft_e(char **args)
 	while (args[i] && b != 0)
 	{
 		b = ft_do_e(args[i]);
-		if (i < ft_len(args) - 1)
+		if ((i < ft_len(args) - 1) && e == 0)
 			ft_putchar(' ');
 		i++;
 	}
 }
 
-void		ft_echo_br(int b, char **args)
+void		ft_echo_br(int b, char **args, int e)
 {
 	if (b == 1)
 		ft_cap_e(args);
 	if (b == 0)
-		ft_e(args);
+		ft_e(args, e);
 }
 
-int			ft_echo_branch(char **e_args, int n, int b)
+int			ft_echo_branch(char **e_args, int n, int b, int e)
 {
 	int		i;
 
@@ -73,7 +73,7 @@ int			ft_echo_branch(char **e_args, int n, int b)
 				b = 0;
 		}
 	}
-	ft_echo_br(b, e_args);
+	ft_echo_br(b, e_args, e);
 	return (n);
 }
 
@@ -82,18 +82,16 @@ void		ft_echo(char **args)
 	int		i;
 	int		n;
 	int		b;
-	//int		echo;
-	//char	**e_args;
+	int		e;
+	char	**e_args;
 
 	n = 0;
 	i = 0;
 	b = 1;
-	//args = NULL;
-	ft_putendl("echo#1");
-	ft_echo_quo(&args);
-	ft_putendl("echo#2");
-	if (args[1] != NULL || args[1] != '\0')
-		n = ft_echo_branch(args, n, b);
+	e = 0;
+	e_args = ft_echo_quo(args, &e);
+	if (e_args[1] != NULL || e_args[1] != '\0')
+		n = ft_echo_branch(e_args, n, b, e);
 	if (n == 1)
 		ft_putchar('$');
 	ft_putchar('\n');

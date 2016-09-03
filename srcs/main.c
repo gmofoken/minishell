@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 17:57:26 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/25 15:58:21 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/09/03 09:22:48 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	**ft_env_dup(void)
 	return (env);
 }
 
-int	main(void)
+int		main(void)
 {
 	char	**environ;
 
