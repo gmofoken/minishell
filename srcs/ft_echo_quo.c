@@ -100,9 +100,7 @@ static char		**ft_new_args(char **args)
 char			**ft_echo_quo(char **args, int *e)
 {
 	char	**new_args;
-	int		i;
 
-	i = 0;
 	if (ft_even_odd(args) == 1)
 	{
 		*e = 1;

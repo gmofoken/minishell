@@ -38,6 +38,7 @@ void		launch_s(char **envp)
 	{
 		ft_putstr("KG_SHELL$ ");
 		line = ft_epur_str(ft_get_line());
+		free(line);
 		args = ft_strsplit(line, ' ');
 		if (ft_strlen(line) > 0 && args[0] != NULL)
 		{
@@ -48,5 +49,6 @@ void		launch_s(char **envp)
 			if (b == 2)
 				exe(args, envp);
 		}
+		ft_2d_free(args);
 	}
 }

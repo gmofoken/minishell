@@ -28,6 +28,7 @@ void	exe(char **args, char **envp)
 		i = execve(dir, args, envp);
 		if (i != 0)
 			ft_putstr("ERROR");
+		free(dir);
 	}
 	else if (pid < 0)
 		ft_putstr("WORLD COMING TO AN END!!!! RUN!!!!!!!!!!!!");

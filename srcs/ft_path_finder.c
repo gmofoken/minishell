@@ -43,6 +43,7 @@ char			*ft_path_finder(char **p, char **n)
 		return (*n);
 	p_t = f_path(p);
 	dir = split_path(p_t);
+	free(p_t);
 	i = 0;
 	if (dir == NULL)
 		return (NULL);
@@ -56,6 +57,8 @@ char			*ft_path_finder(char **p, char **n)
 			return (d);
 		i++;
 	}
+	free(tmp);
+	ft_2d_free(dir);
 	ft_putendl(ft_strjoin("zsh: command not found: ", *n));
 	return (NULL);
 }

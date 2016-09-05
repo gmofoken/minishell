@@ -79,14 +79,12 @@ int			ft_echo_branch(char **e_args, int n, int b, int e)
 
 void		ft_echo(char **args)
 {
-	int		i;
 	int		n;
 	int		b;
 	int		e;
 	char	**e_args;
 
 	n = 0;
-	i = 0;
 	b = 1;
 	e = 0;
 	e_args = ft_echo_quo(args, &e);
