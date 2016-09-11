@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/10 15:34:05 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/28 16:14:05 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/09/11 13:57:22 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ char		*env_attr(char **envp, char *attr)
 
 char		*unique_dir(char *arg, char **env)
 {
-	return (ft_strjoin(env_attr(env, "HOME"), ft_strstr(arg, "/")));
+	char	*str;
+
+	str = ft_strjoin(env_attr(env, "HOME"), ft_strstr(arg, "/"));
+	return (str);
 }
 
 static void	travel(char **env, char *dir, char **args)
@@ -58,15 +61,19 @@ static void	travel(char **env, char *dir, char **args)
 		ft_setenv(ft_strjoin("PWD=", unique_dir(args[1], env)), env);
 		ft_setenv(tmp, env);
 	}
+	free(tmp);
 }
 
 void		ft_cd_fnl(char **args)
 {
 	int		i;
+	char	*s;
 
 	i = chdir(args[1]);
+	s = ft_strjoin("cd: no such file or directory: ", args[1]);
 	if (i != 0)
-		ft_putendl(ft_strjoin("cd: no such file or directory: ", args[1]));
+		ft_putendl(s);
+	free(s);
 }
 
 int			ft_cd(char **args, char **env)
