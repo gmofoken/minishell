@@ -15,7 +15,7 @@ NAME = minishell
 SOURCES = srcs/exe.c srcs/ft_path_finder.c srcs/get_line.c srcs/l_shell.c \
           srcs/main.c srcs/env_module.c srcs/ft_set_env.c srcs/ft_cd.c \
 		  srcs/ft_echo.c srcs/ft_putecho.c srcs/ft_do_e.c srcs/ft_unsetenv.c \
-		 srcs/ft_echo_quo.c 
+		 srcs/ft_echo_quo.c srcs/ft_inhibitors.c 
 
 HEADER = -I include
 

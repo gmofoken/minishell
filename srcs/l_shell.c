@@ -21,6 +21,8 @@ static int	o_args(char **args, int b, char **envp)
 		env_mod(args, envp);
 	else if (ft_strcmp(args[0], "cd") == 0)
 		b = ft_cd(args, envp);
+	else if (ft_even_odd(args, '\'') == 1 || ft_even_odd(args, '"') == 1)
+		ft_inhibitors_quo(args);
 	else
 		b = 2;
 	return (b);
@@ -38,7 +40,6 @@ void		launch_s(char **envp)
 	{
 		ft_putstr("KG_SHELL$ ");
 		line = ft_epur_str(ft_get_line());
-		free(line);
 		args = ft_strsplit(line, ' ');
 		if (ft_strlen(line) > 0 && args[0] != NULL)
 		{
@@ -49,6 +50,7 @@ void		launch_s(char **envp)
 			if (b == 2)
 				exe(args, envp);
 		}
+		free(line);
 		ft_2d_free(args);
 	}
 }

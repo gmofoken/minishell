@@ -12,7 +12,7 @@
 
 #include "mini_shell.h"
 
-static int		ft_even_odd(char **args)
+int		ft_even_odd(char **args, char c)
 {
 	int		i;
 	int		j;
@@ -24,7 +24,7 @@ static int		ft_even_odd(char **args)
 	{
 		j = 0;
 		while (args[i][j] != '\0')
-			if (args[i][j++] == '"')
+			if (args[i][j++] == c)
 				even++;
 		i++;
 	}
@@ -33,16 +33,16 @@ static int		ft_even_odd(char **args)
 	return (1);
 }
 
-static int		ft_even_odd_s(char *args)
+int		ft_even_odd_s(char *arg, char c)
 {
 	int		i;
 	int		even;
 
 	i = 0;
 	even = 0;
-	while (args[i] != '\0')
+	while (arg[i] != '\0')
 	{
-		if (args[i] == '"')
+		if (arg[i] == c)
 			even++;
 		i++;
 	}
@@ -51,7 +51,7 @@ static int		ft_even_odd_s(char *args)
 	return (1);
 }
 
-static char		*ft_first_arg(char **args)
+char		*ft_first_arg(char **args)
 {
 	char		*arg;
 	int			i;
@@ -63,7 +63,6 @@ static char		*ft_first_arg(char **args)
 		arg = ft_strjoin(arg, args[i]);
 		i++;
 	}
-	ft_2d_free(args);
 	return (arg);
 }
 
@@ -90,7 +89,7 @@ static char		**ft_new_args(char **args)
 		new_args[i++] = line;
 		j = 0;
 		while (line[j++] != '\0')
-			if (ft_even_odd_s(line) == 1)
+			if (ft_even_odd_s(line, '"') == 1)
 				b = 0;
 	}
 	new_args[i] = NULL;
@@ -101,7 +100,7 @@ char			**ft_echo_quo(char **args, int *e)
 {
 	char	**new_args;
 
-	if (ft_even_odd(args) == 1)
+	if (ft_even_odd(args, '"') == 1)
 	{
 		*e = 1;
 		new_args = ft_new_args(args);

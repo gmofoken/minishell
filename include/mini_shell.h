@@ -36,5 +36,9 @@ char		*ft_realloc(char *str, char *str2);
 void		ft_execute_env(char **env);
 void		ft_2d_free(char **arg);
 char		**ft_echo_quo(char **args, int *e);
+int		ft_even_odd(char **args, char c);
+void		ft_inhibitors_quo(char **args);
+char		*ft_first_arg(char **args);
+int		ft_even_odd_s(char *arg, char c);
 
 #endif
