@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 17:19:34 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/09/11 10:14:01 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/10/26 12:27:32 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ char			*ft_get_line(void)
 			size = size * 2;
 			line = resize_str(line, size);
 		}
-		line[i] = c;
-		i++;
+		line[i++] = c;
 	}
 	line[i] = '\0';
 	return (line);

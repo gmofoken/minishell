@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 17:57:26 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/09/03 09:22:48 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/12/15 13:55:33 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**ft_env_dup(void)
 	int			j;
 
 	i = 0;
-	env = (char **)malloc(sizeof(char *) * 30);
+	env = (char **)malloc(sizeof(char *) * 40);
 	while (environ[i] != NULL)
 	{
 		j = 0;
@@ -42,7 +42,6 @@ int		main(void)
 	char	**environ;
 
 	environ = ft_env_dup();
-	execve("clear", (char **)"clear", environ);
 	launch_s(environ);
 	return (0);
 }

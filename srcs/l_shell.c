@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 16:15:56 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/09/11 12:56:58 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/12/09 16:09:51 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static int	o_args(char **args, int b, char **envp)
 		ft_echo(args);
 	else if (ft_strcmp(args[0], "env") == 0 || ft_strcmp(args[0], "setenv")
 			== 0 || ft_strcmp(args[0], "unsetenv") == 0)
+	{
 		env_mod(args, envp);
+		b = 1;
+	}
 	else if (ft_strcmp(args[0], "cd") == 0)
 		b = ft_cd(args, envp);
 	else if (ft_even_odd(args, '\'') == 1 || ft_even_odd(args, '"') == 1)
@@ -42,6 +45,7 @@ void		launch_s(char **envp)
 		line = ft_epur_str(ft_get_line());
 		args = (char**)malloc(sizeof(args) * 20);
 		args = ft_strsplit(line, ' ');
+		free(line);
 		if (ft_strlen(line) > 0 && args[0] != NULL)
 		{
 			if (ft_strcmp(args[0], "exit") == 0)
@@ -51,7 +55,6 @@ void		launch_s(char **envp)
 			if (b == 2)
 				exe(args, envp);
 		}
-		free(line);
-		//ft_2d_free(args);
+		ft_2d_free(args);
 	}
 }

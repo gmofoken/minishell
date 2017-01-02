@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:39:22 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/09/11 10:47:52 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/12/09 16:05:53 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
-# include "../libft/includes/libft.h"
+# include "../libft/libft.h"
 
 void		launch_s(char **envp);
 char		*ft_get_line(void);

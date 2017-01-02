@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 15:38:28 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/19 09:18:48 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/11/21 10:20:38 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 static char		**split_path(char *p)
 {
-	return (ft_strsplit(&p[5], ':'));
+	char	**ret;
+
+	ret = ft_strsplit(&p[5], ':');
+	free(p);
+	return (ret);
 }
 
 static char		*f_path(char **p)
@@ -31,6 +35,13 @@ static char		*f_path(char **p)
 	return (NULL);
 }
 
+void			clean_up(char **dir, char *n, char *tmp)
+{
+	free(tmp);
+	ft_2d_free(dir);
+	ft_putendl(ft_strjoin("zsh: command not found: ", n));
+}
+
 char			*ft_path_finder(char **p, char **n)
 {
 	char	**dir;
@@ -43,7 +54,6 @@ char			*ft_path_finder(char **p, char **n)
 		return (*n);
 	p_t = f_path(p);
 	dir = split_path(p_t);
-	free(p_t);
 	i = 0;
 	if (dir == NULL)
 		return (NULL);
@@ -57,8 +67,6 @@ char			*ft_path_finder(char **p, char **n)
 			return (d);
 		i++;
 	}
-	free(tmp);
-	ft_2d_free(dir);
-	ft_putendl(ft_strjoin("zsh: command not found: ", *n));
+	clean_up(dir, *n, tmp);
 	return (NULL);
 }

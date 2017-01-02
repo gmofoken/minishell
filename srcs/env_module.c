@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/10 10:24:19 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/08/22 13:33:57 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/12/09 16:11:10 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ static void	ft_env(char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		ft_putstr(envp[i]);
-		ft_putchar('\n');
+		ft_putendl(envp[i]);
 		i++;
 	}
 }

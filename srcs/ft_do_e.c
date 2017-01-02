@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/22 08:21:17 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/09/03 09:29:03 by gmofoken         ###   ########.fr       */
+/*   Updated: 2016/11/21 10:26:25 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int		ft_stop(char *s)
 	return (i);
 }
 
-static int	ft_check_flag(char c, int i)
+static int		ft_check_flag(char c, int i)
 {
 	if (c == 'n')
 		ft_putchar('\n');
@@ -64,7 +64,7 @@ static int	ft_check_flag(char c, int i)
 	return (3);
 }
 
-int			ft_do_e(char *arg)
+int				ft_do_e(char *arg)
 {
 	int		l;
 	int		b;
