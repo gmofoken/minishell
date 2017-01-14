@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 16:15:56 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/12/09 16:09:51 by gmofoken         ###   ########.fr       */
+/*   Updated: 2017/01/12 14:46:29 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,34 @@ static int	o_args(char **args, int b, char **envp)
 	return (b);
 }
 
+void		cleaner(char *line, char **args)
+{
+	int		i;
+
+	i = 0;
+	free(line);
+	while (args[i++])
+		free(args[i]);
+	free(args);
+}
+
+
+
 void		launch_s(char **envp)
 {
 	char	*line;
 	char	**args;
 	int		b;
+	char	*temp;
 
 	b = 1;
-	ft_putstr("\t\t\t\tWELCOME TO THE KG_SHELL V1.0 \n\n\n");
 	while (b != 0)
 	{
-		ft_putstr("KG_SHELL$ ");
-		line = ft_epur_str(ft_get_line());
-		args = (char**)malloc(sizeof(args) * 20);
+		ft_putstr("$ ");
+		temp = ft_get_line();
+		line = ft_epur_str(temp);
+		free(temp);
 		args = ft_strsplit(line, ' ');
-		free(line);
 		if (ft_strlen(line) > 0 && args[0] != NULL)
 		{
 			if (ft_strcmp(args[0], "exit") == 0)
@@ -55,6 +68,6 @@ void		launch_s(char **envp)
 			if (b == 2)
 				exe(args, envp);
 		}
-		ft_2d_free(args);
+		cleaner(line, args);
 	}
 }

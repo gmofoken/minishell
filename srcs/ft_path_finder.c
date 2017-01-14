@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 15:38:28 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/11/21 10:20:38 by gmofoken         ###   ########.fr       */
+/*   Updated: 2017/01/12 16:02:21 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,15 @@ static char		*f_path(char **p)
 
 void			clean_up(char **dir, char *n, char *tmp)
 {
+	int		i;
+	
+	i = 0;
 	free(tmp);
-	ft_2d_free(dir);
-	ft_putendl(ft_strjoin("zsh: command not found: ", n));
+	free(n);
+	while (dir[i++])
+		free(dir[i]);
+	free(dir);
+	//ft_putendl(ft_strjoin("zsh: command not found: ", n));
 }
 
 char			*ft_path_finder(char **p, char **n)
@@ -57,15 +63,17 @@ char			*ft_path_finder(char **p, char **n)
 	i = 0;
 	if (dir == NULL)
 		return (NULL);
-	while (dir[i] != 0)
+	while (dir[i++] != 0)
 	{
 		d = ft_strjoin(dir[i], "/");
 		tmp = ft_strjoin(d, *n);
 		free(d);
 		d = tmp;
 		if (access(d, F_OK) == 0)
+		{
+			clean_up(dir, *n, tmp);
 			return (d);
-		i++;
+		}
 	}
 	clean_up(dir, *n, tmp);
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: gmofoken <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 17:57:26 by gmofoken          #+#    #+#             */
-/*   Updated: 2016/12/15 13:55:33 by gmofoken         ###   ########.fr       */
+/*   Updated: 2017/01/12 09:48:25 by gmofoken         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int		main(void)
 	char	**environ;
 
 	environ = ft_env_dup();
+	ft_putendl("\t\t\t\tWELCOME TO THE KG_SHELL \n\n");
 	launch_s(environ);
 	return (0);
 }
